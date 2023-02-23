@@ -4,6 +4,8 @@ from mlops_iris import load_data
 from mlops_iris import train
 from mlops_iris import predict
 
+from pyspark import *
+
 # Create a SparkSession
 spark = SparkSession.builder.appName("LoadAndSplitData").getOrCreate()
 

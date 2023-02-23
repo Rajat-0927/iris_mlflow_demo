@@ -9,7 +9,7 @@ experiment_name='/Shared/mlops-iris'
 mlflow.set_experiment(experiment_name)
 
 with mlflow.start_run():
-    X_train, X_test, y_train, y_test = load_data.load_split_data('/dbfs/data/01_raw/iris.data')
+    X_train, X_test, y_train, y_test = load_data.load_split_data('/dbfs/FileStore/data/01_raw/iris.data')
 
     model = train.train_model(X_train, X_test, y_train, y_test)
 

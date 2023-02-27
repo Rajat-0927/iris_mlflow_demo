@@ -15,20 +15,20 @@ headers = {
   'Authorization': TOKEN
 }
 
-payload = {
-            "job_id": 507332960731543,
-            }
-payload = json.dumps(payload)
-update_job_api = DATABRICKS_HOST + "/api/2.1/jobs/reset"
-response = requests.request("POST", update_job_api, headers=headers, data=payload)
-print(response.text)
-if response.status_code == 200:
-    print("flow updated")
-else:
-    print("flow update failed")
-    exit(1)
+# payload = {
+#             "job_id": 507332960731543,
+#             }
+# payload = json.dumps(payload)
+# update_job_api = DATABRICKS_HOST + "/api/2.1/jobs/reset"
+# response = requests.request("POST", update_job_api, headers=headers, data=payload)
+# print(response.text)
+# if response.status_code == 200:
+#     print("flow updated")
+# else:
+#     print("flow update failed")
+#     exit(1)
 
-run_workflow = DATABRICKS_HOST + "/api/2.1/jobs/run-now"
+run_workflow = DATABRICKS_HOST + "/jobs/run-now"
 payload_run_workflow = json.dumps({
   "job_id": 507332960731543,
 

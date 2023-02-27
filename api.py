@@ -10,12 +10,12 @@ headers = {
   'Accept': 'application/json',
   'Authorization': TOKEN
 }
-
+run_workflow = DATABRICKS_HOST + "/api/2.1/jobs/run-now"
 payload_run_workflow = json.dumps({
   "job_id": 507332960731543,
   
 })
-response_run = requests.request("POST", headers=headers, data=payload_run_workflow)
+response_run = requests.request("POST",run_workflow, headers=headers, data=payload_run_workflow)
 if response_run.status_code == 200:
   print("triggerd workflow")
 else:

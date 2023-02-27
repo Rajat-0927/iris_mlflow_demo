@@ -1,0 +1,27 @@
+name: Run workflow using git 
+on:
+  push:
+    branches: [main]
+    
+jobs: 
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Python
+        uses: actions/setup-python@v3
+        with:
+          python-version: "3.8"
+      - name: install and run databricks 
+        run: |
+            python -m pip install --upgrade pip
+            export DATABRICKS_HOST=$(DATABRICKS_HOST)
+            export DATABRICKS_TOKEN=$(DATABRICKS_TOKEN)
+            pip install databricks-cli
+      - name: Run Python 
+        run: |
+           export DATABRICKS_HOST=$(DATABRICKS_HOST)
+           export DATABRICKS_TOKEN=$(DATABRICKS_TOKEN)
+           python api.py
+           
+      

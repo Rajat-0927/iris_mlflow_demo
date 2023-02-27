@@ -11,6 +11,7 @@ headers = {
   'Authorization': TOKEN
 }
 run_workflow = DATABRICKS_HOST 
+print(DATABRICKS_HOST)
 payload_run_workflow = json.dumps({
   "job_id": 507332960731543,
   

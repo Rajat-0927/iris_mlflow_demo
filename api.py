@@ -3,6 +3,7 @@ import json
 import os
 import sys
 
+#Set TOKEN
 # Set TOKEN and DATABRICKS_HOST environment variables
 TOKEN = 'Bearer ' + os.getenv('DATABRICKS_TOKEN')
 DATABRICKS_HOST = os.getenv('DATABRICKS_HOST')
@@ -14,34 +15,27 @@ headers = {
   'Authorization': TOKEN
 }
 
-# Define payload for job reset API call
-reset_payload = {
-  "job_id": 507332960731543
-}
+payload = {
+            "job_id": 507332960731543,
+            }
+payload = json.dumps(payload)
+update_job_api = DATABRICKS_HOST + "/api/2.1/jobs/reset"
+response = requests.request("POST", update_job_api, headers=headers, data=payload)
+print(response.text)
+if response.status_code == 200:
+    print("flow updated")
+else:
+    print("flow update failed")
+    exit(1)
 
-# Define payload for job run API call
-run_payload = {
-  "job_id": 507332960731543
-}
+run_workflow = DATABRICKS_HOST + "/api/2.1/jobs/run-now"
+payload_run_workflow = json.dumps({
+  "job_id": 507332960731543,
 
-# Define API endpoint URLs
-reset_url = DATABRICKS_HOST + "/api/2.1/jobs/reset"
-run_url = DATABRICKS_HOST + "/api/2.1/jobs/run-now"
-
-# Attempt to reset Databricks job
-try:
-  reset_response = requests.post(reset_url, headers=headers, json=reset_payload)
-  reset_response.raise_for_status() # raise error if status code not in 200-299 range
-  print("Databricks job reset successful")
-except requests.exceptions.RequestException as e:
-  print("Error resetting Databricks job:", e)
-  sys.exit(1)
-
-# Attempt to run Databricks job
-try:
-  run_response = requests.post(run_url, headers=headers, json=run_payload)
-  run_response.raise_for_status() # raise error if status code not in 200-299 range
-  print("Databricks job run successful")
-except requests.exceptions.RequestException as e:
-  print("Error running Databricks job:", e)
-  sys.exit(1)
+})
+response_run = requests.request("POST",run_workflow, headers=headers, data=payload_run_workflow)
+if response_run.status_code == 200:
+  print("triggerd workflow")
+else:
+  print("Trigger failed")
+  exit(1)

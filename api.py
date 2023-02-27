@@ -10,7 +10,9 @@ headers = {
   'Accept': 'application/json',
   'Authorization': TOKEN
 }
+print("hello1")
 run_workflow = DATABRICKS_HOST 
+print("hello2")
 print(DATABRICKS_HOST)
 payload_run_workflow = json.dumps({
   "job_id": 507332960731543,

@@ -10,10 +10,7 @@ headers = {
   'Accept': 'application/json',
   'Authorization': TOKEN
 }
-print("hello1")
-run_workflow = DATABRICKS_HOST 
-print("hello2")
-print(DATABRICKS_HOST)
+run_workflow = DATABRICKS_HOST + "/api/2.1/jobs/run-now"
 payload_run_workflow = json.dumps({
   "job_id": 507332960731543,
   

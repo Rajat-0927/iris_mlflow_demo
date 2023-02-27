@@ -10,6 +10,7 @@ headers = {
   'Accept': 'application/json',
   'Authorization': TOKEN
 }
+payload={}
 list_all_jobs_api = DATABRICKS_HOST + "/api/2.1/jobs/list"
 response = requests.request("GET", list_all_jobs_api, headers=headers, data=payload)
 response=response.json()

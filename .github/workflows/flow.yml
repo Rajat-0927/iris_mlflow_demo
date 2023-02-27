@@ -1,7 +1,7 @@
 name: Run workflow using git 
 on:
   push:
-    branches: [main]
+    branches: [main1]
     
 jobs: 
   build-and-deploy:

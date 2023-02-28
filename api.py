@@ -22,7 +22,7 @@ payload_run_workflow = json.dumps({
 })
 
 response_run = requests.request("POST",run_workflow, headers=headers, data=payload_run_workflow)
-print(response_run.content)
+print(response_run)
 
 if response_run.status_code == 200:
   print("triggerd workflow")
